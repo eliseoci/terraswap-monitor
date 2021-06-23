@@ -1,5 +1,5 @@
 # Terraswap bLuna-Luna rate monitor
-Telegram bot for bLuna-Luna rate monitoring with automatic notifications
+Telegram bot for bLuna-Luna rate monitoring with automated notifications
 
 ## Pre-requisites
 1. Node.js installed
