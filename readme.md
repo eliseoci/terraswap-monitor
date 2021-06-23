@@ -1,5 +1,4 @@
 # Terraswap bLuna-Luna rate monitor
-======
 Telegram bot for bLuna-Luna rate monitoring with automatic notifications
 
 ## Pre-requisites
