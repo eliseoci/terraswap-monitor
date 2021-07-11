@@ -1,4 +1,4 @@
-# Terraswap bLuna-Luna rate monitor
+# Terraswap tokens swap rate monitor
 Telegram bot for Terra tokens swap rate monitoring with automated notifications
 
 ## Pre-requisites
