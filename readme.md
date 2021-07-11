@@ -1,5 +1,5 @@
 # Terraswap bLuna-Luna rate monitor
-Telegram bot for bLuna-Luna rate monitoring with automated notifications
+Telegram bot for Terra tokens swap rate monitoring with automated notifications
 
 ## Pre-requisites
 1. Node.js installed
@@ -26,3 +26,8 @@ Telegram bot for bLuna-Luna rate monitoring with automated notifications
 5. `query_frequency [frequency in ms]` (configure frequency of the bot to monitor swap rate - **Default value: 5 mins**) - Example: /query_frequency 360000 - which means every 5 minutes
 6. `swaprate_higherthan [assetA] [assetB] [rate]` (bot will send notifications every time the swap rate is higher than the amount defined based on the query frequency for assetA-assetB pair) Example: /swaprate_higherthan lota ust 1.15
 7. `swaprate_lowerthan [assetA] [assetB] [rate]` (bot will send notifications every time the swap rate is lower than the amount defined based on the query frequency for assetA-assetB pair) - Example: /swaprate_lowerthan lota ust 1.02
+8. `list_auto` (returns a list with all the current pairs with swap rate auto-monitoring enabled)
+
+## Buy me a coffee
+Did you liked the bot? Send a tip! =) 
+Terra wallet `terra1exw8kvva3s7yqjkeakunagmnjc2r95h0w2ekvy`

@@ -141,13 +141,14 @@ Swap *1* ${lp[0].name} for *${inverseSwapRate.toFixed(4)}* ${lp[1].name}`)
   }
 }
 
-const helpMessage = `Hola! Puedes utilizar los siguientes comandos:
-- /swap [assetA] [assetB] para obtener el swap rate del asset A / asset B del momento (Ejemplo: /swap luna ust)
-- /autoswap [assetA] [assetB] [swaprate_higher_than] [swaprate_lower_than] (Ejemplo: /autoswap lota ust 1.15 0.78)
-- /swaprate_higherthan [assetA] [assetB] [rate] para el bot envie notificaciones de alertas por arriba del swap rate definido para el par Asset A / Asset B (Ejemplo: /swaprate_higherthan lota ust 1.15)
-- /swaprate_lowerthan [assetA] [assetB] [rate] para el bot envie notificaciones de alertas por debajo del swap rate definido para el par Asset A / Asset B (Ejemplo: /swaprate_lowerthan lota ust 0.8)
-- /query_frequency [frequency in ms] para configurar la frecuencia de chequeo del swap rate bluna/luna (Ejemplo: /query_frequency 360000 - es decir, 5 minutos)
-- /list_auto devuelve una lista con todos los pares con auto-monitoreo activo`
+const helpMessage = `Available commands:
+- /swap [assetA] [assetB] (get rate for assetA-assetB pair) Example: /swap spec ust
+- /autoswap [assetA] [assetB] [swaprate_higher_than] [swaprate_lower_than] (enable automatically checks for the assetA-assetB swap rate - bot will send notifications every time the swap rate is over [swaprate_higher_than] or under [swaprate_lower_than])  Example: /autoswap lota ust 1.15 1.02
+- /autoswap [assetA] [assetB] (turns on/off auto monitor for an already added pair) Example: /autoswap lota ust
+- /swaprate_higherthan [assetA] [assetB] [rate] (bot will send notifications every time the swap rate is higher than the amount defined based on the query frequency for assetA-assetB pair) Example: /swaprate_higherthan lota ust 1.15
+- /swaprate_lowerthan [assetA] [assetB] [rate] (bot will send notifications every time the swap rate is lower than the amount defined based on the query frequency for assetA-assetB pair) - Example: /swaprate_lowerthan lota ust 1.02
+- /query_frequency [frequency in ms] (configure frequency of the bot to monitor swap rate - **Default value: 5 mins**) - Example: /query_frequency 360000 - which means every 5 minutes
+- /list_auto returns a list with all the current pairs with swap rate auto-monitoring enabled`
 
 const Commands = {
   start: (ctx) => {
