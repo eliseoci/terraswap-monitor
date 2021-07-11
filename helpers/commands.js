@@ -135,7 +135,7 @@ Custom autoswap requires 4 parameters: token A, token B, swap rate higher than a
   }
   const swapRate = lp[0].amount/lp[1].amount
   const inverseSwapRate = lp[1].amount/lp[0].amount
-  if((ctx.message.text.indexOf('/swap') >= 0 || (swapRate > config.customAutoSwap[pair.name].swapRateHigherThan || swapRate < config.customAutoSwap[pair.name].swapRateLowerThan)) && config.customAutoSwap[pair.name].isAutoSwapEnabled) {
+  if(ctx.message.text.indexOf('/swap') >= 0 || ((swapRate > config.customAutoSwap[pair.name].swapRateHigherThan || swapRate < config.customAutoSwap[pair.name].swapRateLowerThan)) && config.customAutoSwap[pair.name].isAutoSwapEnabled) {
     ctx.replyWithMarkdown(`Swap *1* ${lp[1].name} for *${swapRate.toFixed(4)}* ${lp[0].name}
 Swap *1* ${lp[0].name} for *${inverseSwapRate.toFixed(4)}* ${lp[1].name}`)
   }
