@@ -28,7 +28,7 @@ let config = {
         chainID: 'columbus-4',
     }),
     bot: new Telegraf(process.env.BOT_TOKEN),
-    swapQueryFrequency: 10000,
+    swapQueryFrequency: 360000,
     isAutoSwapEnabled: false,
     customAutoSwap: {},
     addAutoSwapConfig,
