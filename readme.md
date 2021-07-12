@@ -29,5 +29,5 @@ Telegram bot for Terra tokens swap rate monitoring with automated notifications
 8. `list_auto` (returns a list with all the current pairs with swap rate auto-monitoring enabled)
 
 ## Buy me a coffee
-Did you liked the bot? Send a tip! =) 
+Did you like the bot? Send a tip! =) 
 Terra wallet `terra1exw8kvva3s7yqjkeakunagmnjc2r95h0w2ekvy`
