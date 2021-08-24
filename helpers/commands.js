@@ -96,12 +96,16 @@ Custom autoswap requires 4 parameters: token A, token B, swap rate higher than a
         swapRateHigherThan: swapRateHigherThan,
         swapRateLowerThan: swapRateLowerThan
       }) 
-      ctx.reply(`Autoswap is ON for pair: ${pair.name}`)
+      ctx.reply(`Autoswap is ON for pair: ${pair.name}
+Swap rate higher than: ${swapRateHigherThan || config.customAutoSwap[pair.name].swapRateHigherThan} 
+Swap rate lower than: ${swapRateLowerThan || config.customAutoSwap[pair.name].swapRateLowerThan}`)
     } else {
       if(!pairAuto && !swapRateHigherThan && !swapRateLowerThan){
         const isPairAutoSwapEnabled = config.updatePairAutoSwapConfig(pair.name)
         if(isPairAutoSwapEnabled){
-          ctx.reply(`Autoswap is ON for pair: ${pair.name}`)
+          ctx.reply(`Autoswap is ON for pair: ${pair.name}
+Swap rate higher than: ${swapRateHigherThan || config.customAutoSwap[pair.name].swapRateHigherThan} 
+Swap rate lower than: ${swapRateLowerThan || config.customAutoSwap[pair.name].swapRateLowerThan}`)
         } else {
           // clear timeouts for pair
           for(timeout of timeouts){
@@ -117,7 +121,9 @@ Custom autoswap requires 4 parameters: token A, token B, swap rate higher than a
           swapRateHigherThan,
           swapRateLowerThan
         })
-        ctx.reply(`${pair.name} config was updated`)
+        ctx.reply(`${pair.name} config was updated
+Swap rate higher than: ${swapRateHigherThan || config.customAutoSwap[pair.name].swapRateHigherThan} 
+Swap rate lower than: ${swapRateLowerThan || config.customAutoSwap[pair.name].swapRateLowerThan}`)
       }
     }
   }
@@ -226,11 +232,16 @@ const Commands = {
       ctx.reply('swapQueryFrequency set to: ' + config.swapQueryFrequency + ' ms')
   },
   listAutoSwapEnabledPairs: (ctx) => {
+    if(Object.keys(config.customAutoSwap).length == 0){
+      return ctx.reply("No pairs are being monitored") 
+    }
     let list = `Auto notifications enabled for pairs:
 `
     for(conf in config.customAutoSwap){
       if(config.customAutoSwap[conf].isAutoSwapEnabled){
-        list+= `${conf}
+        list+= `${conf} 
+        Swap rate higher than: ${config.customAutoSwap[conf].swapRateHigherThan}
+        Swap rate lower than: ${config.customAutoSwap[conf].swapRateLowerThan}
 `
       }
     }
