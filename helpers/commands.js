@@ -49,10 +49,10 @@ const findPair = async (tokenA, tokenB) => {
   const pairNameAlt2 = `${tokenB}_${tokenA}`
   const pairs = await getPairs()
 
-  let pair = pairs.find(pair => pair.name == pairNameAlt1.toUpperCase())
+  let pair = pairs.find(pair => pair.name.toUpperCase() == pairNameAlt1.toUpperCase())
 
   if(!pair){
-    pair = pairs.find(pair => pair.name == pairNameAlt2.toUpperCase())
+    pair = pairs.find(pair => pair.name.toUpperCase() == pairNameAlt2.toUpperCase())
   }
 
   if(!pair){
