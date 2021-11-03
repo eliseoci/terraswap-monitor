@@ -25,10 +25,10 @@ const updatePairAutoSwapConfig = (pairName) => {
 let config = {
     terra: new LCDClient({
         URL: 'https://fcd.terra.dev',
-        chainID: 'columbus-4',
+        chainID: 'columbus-5',
     }),
     bot: new Telegraf(process.env.BOT_TOKEN),
-    swapQueryFrequency: 360000,
+    swapQueryFrequency: 10000,
     isAutoSwapEnabled: false,
     customAutoSwap: {},
     addAutoSwapConfig,

@@ -23,7 +23,7 @@ Telegram bot for Terra tokens swap rate monitoring with automated notifications
 2. `swap [assetA] [assetB]` (get rate for assetA-assetB pair) Example: /swap spec ust
 3. `autoswap [assetA] [assetB] [swaprate_higher_than] [swaprate_lower_than]` (enable automatically checks for the assetA-assetB swap rate - bot will send notifications every time the swap rate is over [swaprate_higher_than] or under [swaprate_lower_than])  Example: /autoswap lota ust 1.15 1.02
 4. `autoswap [assetA] [assetB]` (turns on/off auto monitor for an already added pair) Example: /autoswap lota ust
-5. `query_frequency [frequency in ms]` (configure frequency of the bot to monitor swap rate - **Default value: 5 mins**) - Example: /query_frequency 360000 - which means every 5 minutes
+5. `query_frequency [frequency in ms]` (configure frequency of the bot to monitor swap rate - **Default value: 10 sec**) - Example: /query_frequency 360000 - which means every 5 minutes
 6. `swaprate_higherthan [assetA] [assetB] [rate]` (bot will send notifications every time the swap rate is higher than the amount defined based on the query frequency for assetA-assetB pair) Example: /swaprate_higherthan lota ust 1.15
 7. `swaprate_lowerthan [assetA] [assetB] [rate]` (bot will send notifications every time the swap rate is lower than the amount defined based on the query frequency for assetA-assetB pair) - Example: /swaprate_lowerthan lota ust 1.02
 8. `list_auto` (returns a list with all the current pairs with swap rate auto-monitoring enabled)

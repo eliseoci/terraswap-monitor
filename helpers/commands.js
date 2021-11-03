@@ -73,9 +73,11 @@ const customQuerySwapRate = async (ctx, pairAuto) => {
     if(!tokenA || !tokenB){
       return ctx.reply(`Error! /swap requires asset A and asset B as parameters. Example: /swap lota ust`)
     }
-
-    pair = await findPair(tokenA, tokenB)
-
+    try {
+      pair = await findPair(tokenA, tokenB)
+    } catch (ex) {
+      console.log(ex)
+    }
     if(!pair){
       return ctx.reply(`Oops! Pair wasn't found! :(`)
     }
@@ -127,23 +129,27 @@ Swap rate lower than: ${swapRateLowerThan || config.customAutoSwap[pair.name].sw
       }
     }
   }
-  const poolQueryResults = await Terra.wasm.contractQuery(pair.contractAddress, {"pool": {}})
-  let lp = []
-  for(asset of poolQueryResults.assets){
-    const amount = asset.amount/1000000
-    if(asset.info.native_token){
-      const token = pair.tokens.find(token => token.name.toUpperCase() == nativeTokens[asset.info.native_token.denom])
-      lp.push({ ...token, amount })
-    } else {
-      const token = pair.tokens.find(token => token.contractAddress == asset.info.token.contract_addr)
-      lp.push({ ...token, amount })
+  try {
+    const poolQueryResults = await Terra.wasm.contractQuery(pair.contractAddress, {"pool": {}})
+    let lp = []
+    for(asset of poolQueryResults.assets){
+      const amount = asset.amount/1000000
+      if(asset.info.native_token){
+        const token = pair.tokens.find(token => token.name.toUpperCase() == nativeTokens[asset.info.native_token.denom])
+        lp.push({ ...token, amount })
+      } else {
+        const token = pair.tokens.find(token => token.contractAddress == asset.info.token.contract_addr)
+        lp.push({ ...token, amount })
+      }
     }
-  }
-  const swapRate = lp[0].amount/lp[1].amount
-  const inverseSwapRate = lp[1].amount/lp[0].amount
-  if(ctx.message.text.indexOf('/swap') >= 0 || ((swapRate > config.customAutoSwap[pair.name].swapRateHigherThan || swapRate < config.customAutoSwap[pair.name].swapRateLowerThan)) && config.customAutoSwap[pair.name].isAutoSwapEnabled) {
-    ctx.replyWithMarkdown(`Swap *1* ${lp[1].name} for *${swapRate.toFixed(4)}* ${lp[0].name}
-Swap *1* ${lp[0].name} for *${inverseSwapRate.toFixed(4)}* ${lp[1].name}`)
+    const swapRate = lp[0].amount/lp[1].amount
+    const inverseSwapRate = lp[1].amount/lp[0].amount
+    if(ctx.message.text.indexOf('/swap') >= 0 || ((swapRate > config.customAutoSwap[pair.name].swapRateHigherThan || swapRate < config.customAutoSwap[pair.name].swapRateLowerThan)) && config.customAutoSwap[pair.name].isAutoSwapEnabled) {
+      ctx.replyWithMarkdown(`Swap *1* ${lp[1].name} for *${swapRate.toFixed(4)}* ${lp[0].name}
+  Swap *1* ${lp[0].name} for *${inverseSwapRate.toFixed(4)}* ${lp[1].name}`)
+    }
+  } catch (ex) {
+    console.log(ex)
   }
 }
 
